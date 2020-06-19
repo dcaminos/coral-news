@@ -9,12 +9,12 @@ import {applyMiddleware, combineReducers, createStore} from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import App from './App';
 import {name as appName} from './app.json';
-import layoutReducer from './src/reducers/layout';
 import newsReducer from './src/reducers/news';
+import userReducer from './src/reducers/user';
 
 const rootReducer = combineReducers({
   news: newsReducer,
-  layout: layoutReducer,
+  user: userReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));

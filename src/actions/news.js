@@ -24,7 +24,7 @@ function fetchNewsError(error) {
   };
 }
 
-export const fetchNewsAction = filters => {
+export const fetchNewsAction = () => {
   return async dispatch => {
     dispatch(fetchNewsPending());
     fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey=' + API_KEY)
