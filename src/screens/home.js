@@ -1,23 +1,18 @@
 import React from 'react';
-import {ActivityIndicator, View} from 'react-native';
 import {useSelector} from 'react-redux';
 import ArticleList from '../components/articleList';
+import LoadingIcon from '../components/loadingIcon';
 import {getArticles, getStatus} from '../selectors';
 
-function HomeScreen() {
+const HomeScreen = () => {
   const status = useSelector(getStatus);
   const articles = useSelector(getArticles);
 
-  console.log(articles);
   if (status.isLoading) {
-    return (
-      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        <ActivityIndicator size="small" color="#0000ff" />
-      </View>
-    );
+    return <LoadingIcon />;
   }
 
   return <ArticleList articles={articles} />;
-}
+};
 
 export default HomeScreen;

@@ -1,23 +1,12 @@
-import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {Button, Text, View} from 'react-native';
 import {useSelector} from 'react-redux';
+import Article from '../components/article';
 import {getCurrentArticle} from '../selectors';
 
-function ArticleScreen() {
-  const navigation = useNavigation();
+const ArticleScreen = () => {
   const currentArticle = useSelector(getCurrentArticle);
 
-  return (
-    <View>
-      <Button
-        title="Back to home"
-        onPress={() => navigation.navigate('Home')}
-      />
-
-      <Text>{currentArticle.title}</Text>
-    </View>
-  );
-}
+  return <Article article={currentArticle} />;
+};
 
 export default ArticleScreen;
