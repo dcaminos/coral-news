@@ -14,7 +14,7 @@ const Article = ({article}) => {
       dispatch(addToFavorites(article.id));
     }
   };
-  console.log(article.urlToImage);
+
   return (
     <View style={styles.article}>
       <ScrollView style={styles.view} removeClippedSubviews={true}>

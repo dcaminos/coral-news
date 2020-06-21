@@ -2,6 +2,7 @@ import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import {useSelector} from 'react-redux';
 import ArticleList from '../components/articleList';
+import ErrorMessage from '../components/errorMessage';
 import LoadingIcon from '../components/loadingIcon';
 import {getArticles, getStatus} from '../selectors';
 
@@ -11,6 +12,10 @@ const HomeScreen = () => {
 
   if (status.isLoading) {
     return <LoadingIcon />;
+  }
+
+  if (status.error) {
+    return <ErrorMessage error={status.error} />;
   }
 
   return (
