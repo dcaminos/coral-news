@@ -3,6 +3,8 @@ export const FETCH_NEWS_PENDING = 'FETCH_NEWS_PENDING';
 export const FETCH_NEWS_SUCCESS = 'FETCH_NEWS_SUCCESS';
 export const FETCH_NEWS_ERROR = 'FETCH_NEWS_ERROR';
 
+const API_URL = 'https://newsapi.org/v2/top-headlines';
+const COUNTRY = 'us';
 const API_KEY = '67ad268a66e34410a7b1300a48c329b2';
 
 function fetchNewsPending() {
@@ -28,7 +30,11 @@ function fetchNewsError(error) {
 export const fetchNewsAction = () => {
   return async dispatch => {
     dispatch(fetchNewsPending());
-    fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey=' + API_KEY)
+
+    const url = new URL(API_URL);
+    url.searchParams.append('country', COUNTRY);
+    url.searchParams.append('apiKey', API_KEY);
+    fetch(url)
       .then(res => res.json())
       .then(res => {
         if (res.error) {

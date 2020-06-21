@@ -1,5 +1,5 @@
 import React from 'react';
-import {ScrollView} from 'react-native';
+import {ScrollView, StyleSheet} from 'react-native';
 import {Column, Grid, Row} from 'react-native-responsive-grid';
 import ArticleItem from '../components/articleItem';
 
@@ -10,7 +10,7 @@ const ArticleList = ({articles}) => {
   return (
     <Grid>
       {({state}) => (
-        <Column fullHeight>
+        <Column fullHeight style={styles.mainColumn}>
           <ScrollView removeClippedSubviews={true}>
             <Row>
               {articles.map((article, index) => (
@@ -45,5 +45,12 @@ const ArticleList = ({articles}) => {
     </Grid>
   );
 };
+
+const styles = StyleSheet.create({
+  mainColumn: {
+    paddingLeft: 10,
+    paddingRight: 10,
+  },
+});
 
 export default ArticleList;

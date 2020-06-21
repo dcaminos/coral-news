@@ -14,7 +14,7 @@ const FavoriteButton = ({onPress, filled = true, color = 'red'}) => {
 
 const styles = StyleSheet.create({
   favoriteButton: {
-    padding: 24,
+    padding: 10,
   },
 });
 
