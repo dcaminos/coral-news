@@ -48,8 +48,7 @@ const ArticleList = ({articles}) => {
 
 const styles = StyleSheet.create({
   mainColumn: {
-    paddingLeft: 10,
-    paddingRight: 10,
+    paddingHorizontal: 10,
   },
 });
 
