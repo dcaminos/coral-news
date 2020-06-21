@@ -2,10 +2,11 @@ import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {Button, Text, View} from 'react-native';
 import {useSelector} from 'react-redux';
+import {getCurrentArticle} from '../selectors';
 
 function ArticleScreen() {
   const navigation = useNavigation();
-  const currentArticle = useSelector(store => store.user.currentArticle);
+  const currentArticle = useSelector(getCurrentArticle);
 
   return (
     <View>

@@ -1,3 +1,4 @@
+import {sha256} from 'react-native-sha256';
 export const FETCH_NEWS_PENDING = 'FETCH_NEWS_PENDING';
 export const FETCH_NEWS_SUCCESS = 'FETCH_NEWS_SUCCESS';
 export const FETCH_NEWS_ERROR = 'FETCH_NEWS_ERROR';
@@ -37,10 +38,22 @@ export const fetchNewsAction = () => {
           throw res.message;
         }
 
-        dispatch(fetchNewsSuccess(res.articles));
+        return Promise.all(res.articles.map(parseArticle));
+      })
+      .then(articles => {
+        dispatch(fetchNewsSuccess(articles));
       })
       .catch(error => {
         dispatch(fetchNewsError(error));
       });
   };
+};
+
+const parseArticle = article => {
+  return sha256(article.publishedAt + article.title).then(hash => {
+    return {
+      id: hash,
+      ...article,
+    };
+  });
 };

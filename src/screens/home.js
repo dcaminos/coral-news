@@ -8,6 +8,7 @@ function HomeScreen() {
   const status = useSelector(getStatus);
   const articles = useSelector(getArticles);
 
+  console.log(articles);
   if (status.isLoading) {
     return (
       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>

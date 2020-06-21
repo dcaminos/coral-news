@@ -7,7 +7,11 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Column, Row} from 'react-native-responsive-grid';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {useDispatch} from 'react-redux';
-import {setCurrentArticleAction} from '../actions/user';
+import {
+  addToFavorites,
+  removeFromFavorites,
+  setCurrentArticleAction,
+} from '../actions/user';
 
 // column width (relative to screen size)
 const sizes = {sm: 100, md: 100, lg: 33.333, xl: 25};
@@ -17,8 +21,16 @@ function ArticleItem({gridState, article}) {
   const dispatch = useDispatch();
 
   const goToArticle = () => {
-    dispatch(setCurrentArticleAction(article));
+    dispatch(setCurrentArticleAction(article.id));
     navigation.navigate('Article');
+  };
+
+  const setFavorited = () => {
+    if (article.isFavorited) {
+      dispatch(removeFromFavorites(article.id));
+    } else {
+      dispatch(addToFavorites(article.id));
+    }
   };
 
   return (
@@ -47,8 +59,13 @@ function ArticleItem({gridState, article}) {
             <Text>{article.title}</Text>
             <Text>{article.date}</Text>
           </View>
-          <FontAwesomeIcon icon={solidHeart} />
-          <FontAwesomeIcon icon={emptyHeart} />
+
+          <TouchableOpacity onPress={setFavorited}>
+            <FontAwesomeIcon
+              icon={article.isFavorited ? solidHeart : emptyHeart}
+            />
+          </TouchableOpacity>
+
           <Image
             style={{width: '100%', height: '70%', resizeMode: 'cover'}}
             source={{uri: article.urlToImage}}
