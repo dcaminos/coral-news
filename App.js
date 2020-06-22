@@ -17,19 +17,29 @@ const App = () => {
     dispatch(fetchNewsAction());
   }, []);
 
+  const headerStyle = {
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 1},
+    shadowOpacity: 0.8,
+    shadowRadius: 1,
+  };
+
   const homeOptions = ({navigation}) => ({
     title: 'Coral News',
     headerRight: () => (
       <FavoriteButton onPress={() => navigation.navigate('Favorites')} />
     ),
+    headerStyle: headerStyle,
   });
 
   const articleOptions = () => ({
     title: '',
+    headerStyle: headerStyle,
   });
 
   const favoritesOptions = () => ({
     title: 'Favorites',
+    headerStyle: headerStyle,
   });
 
   return (
